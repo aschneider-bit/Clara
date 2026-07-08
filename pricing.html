@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plans & Pricing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1B2A4A;
+            --navy-dark: #111D35;
+            --navy-light: #2C3E66;
+            --accent: #1B2A4A;
+            --accent-hover: #2C3E66;
+            --sky: #E8EDF4;
+            --sky-light: #F4F6F9;
+            --white: #FFFFFF;
+            --gray-100: #F7F8FA;
+            --gray-200: #E9ECF0;
+            --gray-400: #9BA3B0;
+            --gray-600: #5C6575;
+            --gray-800: #2D3748;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--navy);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 4rem;
+            background: var(--navy-dark);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--navy-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-cta {
+            background: var(--white) !important;
+            color: var(--navy) !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            transition: opacity 0.2s !important;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9 !important;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+            background: var(--sky-light);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--sky);
+            color: var(--navy);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            max-width: 580px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Pricing Grid */
+        .pricing-section {
+            padding: 4rem 2rem 6rem;
+            background: var(--white);
+        }
+
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .plan {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .plan:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(27, 42, 74, 0.1);
+        }
+
+        .plan.featured {
+            border: 2px solid var(--navy);
+            position: relative;
+            background: var(--sky-light);
+        }
+
+        .plan.featured::before {
+            content: 'Most popular';
+            position: absolute;
+            top: -13px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.3rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .plan-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .plan-description {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 1.75rem;
+            min-height: 44px;
+        }
+
+        .plan-price {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray-400);
+        }
+
+        .plan-price.contact {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .plan-cta {
+            display: block;
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 1.75rem 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .plan-cta.primary {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .plan-cta.primary:hover {
+            background: var(--navy-light);
+        }
+
+        .plan-cta.secondary {
+            background: var(--white);
+            color: var(--navy);
+            border: 2px solid var(--gray-200);
+        }
+
+        .plan-cta.secondary:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin-bottom: 1.5rem;
+        }
+
+        .features-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gray-400);
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            padding: 0.45rem 0;
+            font-size: 0.9rem;
+            color: var(--gray-800);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-weight: 400;
+        }
+
+        .features-list li::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border-radius: 50%;
+            background-color: #E8EDF4;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231B2A4A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: 11px;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-top: 2px;
+        }
+
+        /* Meet Clara Section */
+        .meet-clara {
+            background: var(--navy);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .meet-clara h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--white);
+        }
+
+        .meet-clara p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 620px;
+            margin: 0 auto 1.25rem;
+            font-weight: 300;
+        }
+
+        .meet-clara .early-access-btn {
+            display: inline-block;
+            padding: 0.9rem 2.25rem;
+            background: var(--white);
+            color: var(--navy);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 1rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .meet-clara .early-access-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy-dark);
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .pricing-container {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+            }
+
+            .plan-description {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-mark">C</div>
+            <span class="logo-text">Clara <span style="font-weight: 400; opacity: 0.7;">by OurFamilyWizard</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="#">For Families</a>
+            <a href="#">For Practitioners</a>
+            <a href="#">Pricing</a>
+            <a href="#" class="nav-cta">Get started</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">For Practitioners</div>
+        <h1>Clara plans & pricing</h1>
+        <p>AI-powered tools for family law professionals to work more efficiently and stay connected with clients.</p>
+    </section>
+
+    <section class="pricing-section">
+        <div class="pricing-container">
+            <div class="plan">
+                <div class="plan-name">Free</div>
+                <div class="plan-description">For small law firms looking to connect with clients</div>
+                <div class="plan-price">$0 <span>/mo</span></div>
+                <a href="#" class="plan-cta secondary">Get started</a>
+                <div class="divider"></div>
+                <div class="features-label">Includes</div>
+                <ul class="features-list">
+                    <li>Download reports on demand</li>
+                    <li>Message clients</li>
+                    <li>Build custody schedules</li>
+                </ul>
+            </div>
+
+            <div class="plan featured">
+                <div class="plan-name">Pro</div>
+                <div class="plan-description">For firms looking to increase productivity</div>
+                <div class="plan-price">$99 <span>/mo</span></div>
+                <a href="#" class="plan-cta primary">Get started</a>
+                <div class="divider"></div>
+                <div class="features-label">Everything in Free, plus</div>
+                <ul class="features-list">
+                    <li>AI assistant</li>
+                    <li>Search and summarize OurFamilyWizard data</li>
+                    <li>Create draft abstracts, exhibits, and parenting plans</li>
+                </ul>
+            </div>
+
+            <div class="plan">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-description">For large law firms</div>
+                <div class="plan-price contact">Contact sales</div>
+                <a href="#" class="plan-cta secondary">Contact us</a>
+                <div class="divider"></div>
+                <div class="features-label">Everything in Pro, plus</div>
+                <ul class="features-list">
+                    <li>MCP server integration</li>
+                    <li>Firm dashboard</li>
+                    <li>Dedicated account support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="meet-clara">
+        <h2>Meet Clara</h2>
+        <p>Get up to speed on your clients' case history in minutes. Clara helps you quickly surface key conversations, identify important patterns, and draft supporting case materials—without spending hours reviewing messages.</p>
+        <p>Get early access to this new, AI-powered tool and share your feedback to help shape future improvements.</p>
+        <a href="#" class="early-access-btn">Get started</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <a href="#">Clara by OurFamilyWizard</a>. All rights reserved.</p>
+    </footer>
+</body>
+</html>
